@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Birthday!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #14123a;
+      --bg2: #2d1b66;
+      --ink: #fff6e5;
+      --muted: #b9b3e0;
+      --flame: #ffb830;
+      --pink: #ff5d8f;
+      --cream: #fff0d6;
+      --mint: #4de3c1
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      background: radial-gradient(120% 90% at 50% 100%, var(--bg2), var(--bg) 70%);
+      color: var(--ink);
+      font-family: "DM Sans", system-ui, sans-serif;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: env(safe-area-inset-top) 16px env(safe-area-inset-bottom)
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 560px
+    }
+
+    #hint {
+      color: var(--muted);
+      font-size: 1.05rem;
+      min-height: 1.5em
+    }
+
+    .stage {
+      position: relative;
+      width: 240px;
+      height: 260px
+    }
+
+    .glow {
+      position: absolute;
+      left: 50%;
+      top: -10px;
+      width: 420px;
+      height: 420px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(255, 184, 48, .35), transparent 60%);
+      transition: opacity .8s;
+      pointer-events: none
+    }
+
+    .out~.glow,
+    .stage.off .glow {
+      opacity: 0
+    }
+
+    .flame {
+      position: absolute;
+      left: 50%;
+      top: 30px;
+      width: 26px;
+      height: 44px;
+      margin-left: -13px;
+      background: radial-gradient(ellipse at 50% 75%, #fff6c8 10%, var(--flame) 55%, #ff7a1a 100%);
+      border-radius: 50% 50% 50% 50%/65% 65% 35% 35%;
+      transform-origin: 50% 100%;
+      animation: flicker .18s infinite alternate;
+      cursor: pointer;
+      border: 0;
+      padding: 0;
+      transition: opacity .3s, transform .3s
+    }
+
+    .stage.off .flame {
+      opacity: 0;
+      transform: scale(.2);
+      animation: none
+    }
+
+    @keyframes flicker {
+      from {
+        transform: scale(1, 1) rotate(-3deg)
+      }
+
+      to {
+        transform: scale(.92, 1.08) rotate(3deg)
+      }
+    }
+
+    .wick {
+      position: absolute;
+      left: 50%;
+      top: 74px;
+      width: 3px;
+      height: 10px;
+      margin-left: -1.5px;
+      background: #3a2a1a
+    }
+
+    .candle {
+      position: absolute;
+      left: 50%;
+      top: 82px;
+      width: 16px;
+      height: 52px;
+      margin-left: -8px;
+      background: repeating-linear-gradient(135deg, #fff 0 8px, var(--mint) 8px 16px);
+      border-radius: 3px
+    }
+
+    .top {
+      position: absolute;
+      left: 50%;
+      top: 132px;
+      width: 150px;
+      height: 58px;
+      margin-left: -75px;
+      background: var(--cream);
+      border-radius: 14px 14px 4px 4px
+    }
+
+    .top::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 16px;
+      background: var(--pink);
+      border-radius: 14px 14px 10px 10px/14px 14px 16px 16px
+    }
+
+    .base {
+      position: absolute;
+      left: 50%;
+      top: 188px;
+      width: 230px;
+      height: 72px;
+      margin-left: -115px;
+      background: var(--pink);
+      border-radius: 14px 14px 8px 8px
+    }
+
+    .base::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 18px;
+      background: var(--cream);
+      border-radius: 14px 14px 12px 12px/14px 14px 18px 18px
+    }
+
+    .base::after {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      bottom: 14px;
+      height: 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, .35)
+    }
+
+    .smoke {
+      position: absolute;
+      left: 50%;
+      top: 40px;
+      width: 10px;
+      height: 10px;
+      margin-left: -5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .5);
+      opacity: 0;
+      filter: blur(3px)
+    }
+
+    .stage.off .smoke {
+      animation: smoke 1.6s ease-out forwards
+    }
+
+    @keyframes smoke {
+      0% {
+        opacity: .7;
+        transform: translateY(0) scale(1)
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-90px) scale(4)
+      }
+    }
+
+    button.cta {
+      font: inherit;
+      font-weight: 500;
+      font-size: 1.05rem;
+      background: var(--flame);
+      color: #2a1700;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 28px;
+      cursor: pointer
+    }
+
+    button.cta:hover {
+      filter: brightness(1.08)
+    }
+
+    button.ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, .25)
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--mint);
+      outline-offset: 3px
+    }
+
+    #reveal {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px
+    }
+
+    #reveal.show {
+      display: flex;
+      animation: pop .7s cubic-bezier(.2, 1.4, .4, 1)
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(.9)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    h1 {
+      font-family: "Bagel Fat One", "Trebuchet MS", sans-serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 9vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: .01em
+    }
+
+    #msg {
+      max-width: 42ch;
+      font-size: 1.15rem;
+      line-height: 1.55;
+      color: var(--cream)
+    }
+
+    #fx {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .flame {
+        animation: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <p id="hint">Make a wish, then blow out the candle.</p>
+    <div class="stage" id="stage">
+      <div class="glow"></div>
+      <div class="smoke"></div>
+      <button class="flame" id="flame" aria-label="Blow out the candle"></button>
+      <div class="wick"></div>
+      <div class="candle"></div>
+      <div class="top"></div>
+      <div class="base"></div>
+    </div>
+    <button class="cta" id="blow">Blow out the candle</button>
+    <section id="reveal" aria-live="polite">
+      <h1 id="title">Happy Birthday!</h1>
+      <p id="msg"></p>
+      <button class="cta ghost" id="again">Light it again</button>
+    </section>
+  </main>
+  <canvas id="fx"></canvas>
+  <script>
+    // ---- Customize here (or use ?name=Riya&msg=Your+message in the URL) ----
+    const DEFAULT_NAME = "";
+    const DEFAULT_MSG = "Wishing you a year full of good surprises, great food, and everything you’ve been hoping for. Have the best day!";
+    // -----------------------------------------------------------------------
+    const q = new URLSearchParams(location.search);
+    const name = (q.get("name") || DEFAULT_NAME).trim();
+    document.getElementById("title").textContent = name ? `Happy Birthday, Mummmyyy!` : "Happy Birthday!";
+    document.getElementById("msg").textContent = q.get("msg") || DEFAULT_MSG;
+    document.title = name ? `Happy Birthday, Mummyyyy` : "Happy Birthday!";
+
+    const stage = document.getElementById("stage"), reveal = document.getElementById("reveal");
+    const blow = document.getElementById("blow"), hint = document.getElementById("hint");
+    const cv = document.getElementById("fx"), ctx = cv.getContext("2d");
+    let parts = [], running = false;
+    const colors = ["#ffb830", "#ff5d8f", "#4de3c1", "#fff0d6", "#8b7bff"];
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function resize() { cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio; }
+    addEventListener("resize", resize); resize();
+
+    function burst() {
+      const n = reduce ? 40 : 180, d = devicePixelRatio;
+      for (let i = 0; i < n; i++) {
+        const a = Math.random() * Math.PI * 2, s = (4 + Math.random() * 9) * d;
+        parts.push({
+          x: cv.width / 2, y: cv.height * 0.45, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 6 * d,
+          w: (6 + Math.random() * 6) * d, h: (4 + Math.random() * 5) * d, r: Math.random() * 6, vr: (Math.random() - .5) * .4,
+          c: colors[(Math.random() * colors.length) | 0], life: 1
+        });
+      }
+      if (!running) { running = true; requestAnimationFrame(tick); }
+    }
+    function tick() {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      parts.forEach(p => {
+        p.vy += .28 * devicePixelRatio; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life -= .006;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.globalAlpha = Math.max(p.life, 0);
+        ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore();
+      });
+      parts = parts.filter(p => p.life > 0 && p.y < cv.height + 40);
+      if (parts.length) requestAnimationFrame(tick); else { running = false; ctx.clearRect(0, 0, cv.width, cv.height); }
+    }
+    function blowOut() {
+      if (stage.classList.contains("off")) return;
+      stage.classList.add("off"); blow.style.display = "none"; hint.textContent = "Wish made!";
+      setTimeout(() => { hint.textContent = ""; reveal.classList.add("show"); burst(); setTimeout(burst, 350); }, 900);
+    }
+    function relight() {
+      stage.classList.remove("off"); reveal.classList.remove("show");
+      blow.style.display = ""; hint.textContent = "Make a wish, then blow out the candle.";
+    }
+    blow.addEventListener("click", blowOut);
+    document.getElementById("flame").addEventListener("click", blowOut);
+    document.getElementById("again").addEventListener("click", relight);
+  </script>
+</body>
+
+</html>
