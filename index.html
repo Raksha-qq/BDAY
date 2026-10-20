@@ -9,19 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=DM+Sans:wght@400;500&display=swap"
     rel="stylesheet">
-  .stage.gone { display: none }
-
-  .photo {
-  width: min(62vw, 270px);
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  background: var(--cream);
-  border: 10px solid var(--cream);
-  border-bottom-width: 38px;
-  border-radius: 6px;
-  transform: rotate(-2.5deg);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .5);
-  }
   <style>
     :root {
       --bg: #14123a;
@@ -52,7 +39,6 @@
       overflow-x: hidden;
       min-height: 100%;
       padding: 24px 16px;
-      padding: env(safe-area-inset-top) 16px env(safe-area-inset-bottom)
     }
 
     main {
@@ -79,6 +65,10 @@
       height: 260px
     }
 
+    .stage.gone {
+      display: none
+    }
+
     .glow {
       position: absolute;
       left: 50%;
@@ -91,7 +81,6 @@
       pointer-events: none
     }
 
-    .out~.glow,
     .stage.off .glow {
       opacity: 0
     }
@@ -281,6 +270,18 @@
       }
     }
 
+    .photo {
+      width: min(62vw, 270px);
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: var(--cream);
+      border: 10px solid var(--cream);
+      border-bottom-width: 38px;
+      border-radius: 6px;
+      transform: rotate(-2.5deg);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .5);
+    }
+
     h1 {
       font-family: "Bagel Fat One", "Trebuchet MS", sans-serif;
       font-weight: 400;
@@ -327,13 +328,8 @@
     </div>
     <button class="cta" id="blow">Blow out the candle</button>
     <section id="reveal" aria-live="polite">
-      <section id="reveal" aria-live="polite">
-        <img class="photo" id="photo" src="photo.jpg" alt="A favourite memory together"
-          onerror="this.style.display='none'">
-        <h1 id="title">Happy Birthday!</h1>
-        <p id="msg"></p>
-        <button class="cta ghost" id="again">Light it again</button>
-      </section>
+      <img class="photo" id="photo" src="photo.jpg" alt="A favourite memory together"
+        onerror="this.style.display='none'">
       <h1 id="title">Happy Birthday!</h1>
       <p id="msg"></p>
       <button class="cta ghost" id="again">Light it again</button>
