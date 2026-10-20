@@ -321,14 +321,14 @@
   <canvas id="fx"></canvas>
   <script>
     // ---- Customize here (or use ?name=Riya&msg=Your+message in the URL) ----
-    const DEFAULT_NAME = "";
-    const DEFAULT_MSG = "Wishing you a year full of good surprises, great food, and everything you’ve been hoping for. Have the best day!";
+    const DEFAULT_NAME = "Mummyyy";
+    const DEFAULT_MSG = "Wishing you a year full of good surprises, good luck and everything you’ve been hoping for. Have the best day!";
     // -----------------------------------------------------------------------
     const q = new URLSearchParams(location.search);
     const name = (q.get("name") || DEFAULT_NAME).trim();
-    document.getElementById("title").textContent = name ? `Happy Birthday, Mummmyyy!` : "Happy Birthday!";
+    document.getElementById("title").textContent = name ? `Happy Birthday, ${name}!` : "Happy Birthday!";
     document.getElementById("msg").textContent = q.get("msg") || DEFAULT_MSG;
-    document.title = name ? `Happy Birthday, Mummyyyy` : "Happy Birthday!";
+    document.title = name ? `Happy Birthday, ${name}!` : "Happy Birthday!";
 
     const stage = document.getElementById("stage"), reveal = document.getElementById("reveal");
     const blow = document.getElementById("blow"), hint = document.getElementById("hint");
